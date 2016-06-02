@@ -1,0 +1,31 @@
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+group 'pttg-gradle-common'
+version '0.1'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies{
+    compile localGroovy()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
