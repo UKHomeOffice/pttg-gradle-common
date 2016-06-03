@@ -61,8 +61,8 @@ class CommonGradle implements Plugin<Project> {
                 testCompile "org.json:json:$jsonVersion"
 
                 testCompile "org.springframework:spring-test:$springVersion"
-                testCompile 'junit:junit:4.12'
-                testCompile 'org.mockito:mockito-all:1.10.19:'
+                testCompile "junit:junit:4.12"
+                testCompile "org.mockito:mockito-all:1.10.19:"
             }
 
             ext.libraries = [
@@ -70,7 +70,7 @@ class CommonGradle implements Plugin<Project> {
                     logging       : [
                             "ch.qos.logback:logback-classic:$logbackVersion",
                             "ch.qos.logback:logback-core:$logbackVersion",
-                            'org.slf4j:slf4j-parent:1.7.14'
+                            "org.slf4j:slf4j-parent:1.7.14"
                     ],
 
                     jackson       : [
@@ -110,7 +110,7 @@ class CommonGradle implements Plugin<Project> {
                     cucumber      : [
                             "info.cukes:cucumber-java:$cucumberVersion",
                             "info.cukes:cucumber-junit:$cucumberVersion",
-                            'info.cukes:gherkin:2.12.2',
+                            "info.cukes:gherkin:2.12.2",
                             "net.serenity-bdd:serenity-core:$serenityVersion",
                             "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion",
                             "net.serenity-bdd:serenity-junit:$serenityVersion"
