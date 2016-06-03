@@ -6,9 +6,6 @@
 
 ```
 buildscript {
-       repositories {
-           // etc
-       }
        dependencies {
            classpath 'pttg-gradle-common:pttgCommonGradle:0.1'
        }
