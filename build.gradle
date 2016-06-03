@@ -1,9 +1,20 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.layer:gradle-git-repo-plugin:2.0.2'
+    }
+}
+
 apply plugin: 'java-gradle-plugin'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
+apply plugin: 'git-repo'
 
 group 'pttg-gradle-common'
-version '0.1'
+version '1.0.RELEASE'
 
 repositories {
     mavenCentral()
@@ -19,9 +30,17 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
 }
 
+gitPublishConfig{
+    org = "UKHomeOffice"
+    repo = "pttg-gradle-repo"
+    gitUrl = "https://github.com/UKHomeOffice/pttg-gradle-repo.git"
+}
+
 publishing {
     repositories {
-        mavenLocal()
+        maven {
+            url "file://${gitPublishConfig.home}/${gitPublishConfig.org}/${gitPublishConfig.repo}/releases"
+        }
     }
     publications {
         mavenJava(MavenPublication) {
@@ -29,3 +48,4 @@ publishing {
         }
     }
 }
+
