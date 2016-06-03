@@ -75,3 +75,11 @@ The following libraries are defined:
 - restassured 
 - spock    
 - cucumber
+
+### Deploying this plugin to the GitHub gradle repository
+
+1. Set the version number in build.gradle (and update this readme)
+2. Execute the tasks clean, build, publishToGitHub
+3. IntelliJ will ask you for your github login the first time
+
+This relies on the [gradle-git-repo-plugin](https://github.com/layerhq/gradle-git-repo-plugin)
