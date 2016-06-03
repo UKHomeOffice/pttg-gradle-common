@@ -5,6 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ApplicationPlugin
 import org.gradle.api.plugins.GroovyPlugin
 import org.gradle.api.plugins.JavaPlugin
+import org.gradle.api.plugins.quality.CheckstylePlugin
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.wrapper.Wrapper
 
@@ -21,6 +22,7 @@ class CommonGradle implements Plugin<Project> {
             plugins.apply(JavaPlugin)
             plugins.apply(GroovyPlugin)
             plugins.apply(ApplicationPlugin)
+            plugins.apply(CheckstylePlugin)
 
             repositories.jcenter()
             repositories.mavenCentral()
@@ -35,6 +37,19 @@ class CommonGradle implements Plugin<Project> {
 
             tasks.withType(Test) {
                 reports.html.destination = file("${reporting.baseDir}/${name}")
+            }
+
+            checkstyle {
+                ignoreFailures = true
+                config = project.resources.text.fromString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<!DOCTYPE module PUBLIC\n" +
+                    "    \"-//Puppy Crawl//DTD Check Configuration 1.3//EN\" \n" +
+                    "     \"http://www.puppycrawl.com/dtds/configuration_1_3.dtd\"> \n" +
+                    "<module name=\"Checker\">\n" +
+                    "  <module name=\"TreeWalker\">\n" +
+                    "    <module name=\"UnusedImports\"/> \n" +
+                    "  </module>\n" +
+                    "</module>")
             }
 
             ext {
@@ -67,54 +82,54 @@ class CommonGradle implements Plugin<Project> {
 
             ext.libraries = [
 
-                    logging       : [
-                            "ch.qos.logback:logback-classic:$logbackVersion",
-                            "ch.qos.logback:logback-core:$logbackVersion",
-                            "org.slf4j:slf4j-parent:1.7.14"
-                    ],
+                logging       : [
+                    "ch.qos.logback:logback-classic:$logbackVersion",
+                    "ch.qos.logback:logback-core:$logbackVersion",
+                    "org.slf4j:slf4j-parent:1.7.14"
+                ],
 
-                    jackson       : [
-                            "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion",
-                            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-                    ],
+                jackson       : [
+                    "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion",
+                    "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+                ],
 
-                    mongo         : [
-                            "org.mongodb:bson:$mongoVersion",
-                            "org.mongodb:mongodb-driver:$mongoVersion"
-                    ],
+                mongo         : [
+                    "org.mongodb:bson:$mongoVersion",
+                    "org.mongodb:mongodb-driver:$mongoVersion"
+                ],
 
-                    springboot    : [
-                            "org.springframework.boot:spring-boot:$springBootVersion",
-                            "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-                    ],
+                springboot    : [
+                    "org.springframework.boot:spring-boot:$springBootVersion",
+                    "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+                ],
 
-                    springbootDev : [
-                            "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-                    ],
+                springbootDev : [
+                    "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+                ],
 
-                    springrestdocs: [
-                            "org.springframework.restdocs:spring-restdocs-core:$springRestDocsVersion",
-                            "org.springframework.restdocs:spring-restdocs-restassured:$springRestDocsVersion"
-                    ],
+                springrestdocs: [
+                    "org.springframework.restdocs:spring-restdocs-core:$springRestDocsVersion",
+                    "org.springframework.restdocs:spring-restdocs-restassured:$springRestDocsVersion"
+                ],
 
-                    restassured   : [
-                            "com.jayway.restassured:json-schema-validator:$restAssuredVersion",
-                            "com.jayway.restassured:rest-assured:$restAssuredVersion"
-                    ],
+                restassured   : [
+                    "com.jayway.restassured:json-schema-validator:$restAssuredVersion",
+                    "com.jayway.restassured:rest-assured:$restAssuredVersion"
+                ],
 
-                    spock         : [
-                            "org.spockframework:spock-core:$spockVersion",
-                            "org.spockframework:spock-spring:$spockVersion"
-                    ],
+                spock         : [
+                    "org.spockframework:spock-core:$spockVersion",
+                    "org.spockframework:spock-spring:$spockVersion"
+                ],
 
-                    cucumber      : [
-                            "info.cukes:cucumber-java:$cucumberVersion",
-                            "info.cukes:cucumber-junit:$cucumberVersion",
-                            "info.cukes:gherkin:2.12.2",
-                            "net.serenity-bdd:serenity-core:$serenityVersion",
-                            "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion",
-                            "net.serenity-bdd:serenity-junit:$serenityVersion"
-                    ]
+                cucumber      : [
+                    "info.cukes:cucumber-java:$cucumberVersion",
+                    "info.cukes:cucumber-junit:$cucumberVersion",
+                    "info.cukes:gherkin:2.12.2",
+                    "net.serenity-bdd:serenity-core:$serenityVersion",
+                    "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion",
+                    "net.serenity-bdd:serenity-junit:$serenityVersion"
+                ]
             ]
         }
 

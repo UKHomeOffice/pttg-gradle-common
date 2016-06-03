@@ -10,7 +10,7 @@ buildscript {
             maven { url "https://github.com/UKHomeOffice/pttg-gradle-repo/raw/master/releases" }
        }
        dependencies {
-           classpath 'pttg-gradle-common:pttgCommonGradle:1.0.RELEASE'
+           classpath 'pttg-gradle-common:pttgCommonGradle:1.1.RELEASE'
        }
 }
 ```
@@ -42,6 +42,24 @@ apply plugin: 'pttgCommonGradle'
  - mockito
  - groovy
  - json
+ 
+7. Adds Checkstyle to the 'check' task, configured to report on the following errors (but not fail the build):
+ - Unused imports
+  
+  NB You can choose to have Checkstyle violations fail the build by adding this configuration:
+  
+  ```
+  checkstyle {
+    ignoreFailures = true
+  }
+  ```
+  NB You can use your own Checkstyle rules using the following configuration to point to your checkstyle.xml
+  
+  ```
+  checkstyle {
+    configFile = <path-to-checkstyle.xml>
+  }
+  ```
  
 ### What this plugin allows you to use in your build
 
