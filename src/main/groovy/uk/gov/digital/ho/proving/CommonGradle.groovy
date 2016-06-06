@@ -74,6 +74,7 @@ class CommonGradle implements Plugin<Project> {
 
                 testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
                 testCompile "org.json:json:$jsonVersion"
+                testCompile 'com.jayway.jsonpath:json-path:2.2.0'
 
                 testCompile "org.springframework:spring-test:$springVersion"
                 testCompile "junit:junit:4.12"
