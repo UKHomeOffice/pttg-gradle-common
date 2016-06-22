@@ -120,3 +120,16 @@ The following libraries are defined:
 3. IntelliJ will ask you for your github login the first time
 
 This relies on the [gradle-git-repo-plugin](https://github.com/layerhq/gradle-git-repo-plugin)
+
+
+
+### Development
+
+1. Increment the minor version number (still needs to be RELEASE because I can't figure out how to make the git-repo plugin support snapshots)
+2. Make your changes
+3. You can use publishMavenJavaPublicationToMavenLocal to deploy the change to your local maven repo
+   1. Note however that this won't work if your changes add new transitive third-party dependencies
+4. Test consumption of the plugin from another project by
+   1. Adding mavenLocal() to your buildscript repositories to consume form local repo
+   2. using the new version number for the plugin in your buildscript dependencies
+   3. You may well need to execute ``` ./gradlew --refresh-dependencies``` to pick up changes, then refresh your IDE
