@@ -8,9 +8,10 @@
 buildscript {
        repositories{
             maven { url "https://github.com/UKHomeOffice/pttg-gradle-repo/raw/master/releases" }
+            maven { url "https://plugins.gradle.org/m2/" }
        }
        dependencies {
-           classpath 'pttg-gradle-common:pttgCommonGradle:1.1.RELEASE'
+           classpath 'pttg-gradle-common:pttgCommonGradle:1.2.RELEASE'
        }
 }
 ```
@@ -21,6 +22,10 @@ buildscript {
 apply plugin: 'pttgCommonGradle'
 ```
 
+3. User guide
+See the following documentation. In your project you can also execute the 'pttgCommonGradlePluginUsage' task to
+see usage instructions and version information etc.
+
 
 ### What this plugin gives your build automatically
 
@@ -28,6 +33,8 @@ apply plugin: 'pttgCommonGradle'
  - java
  - groovy
  - application
+ - checkstyle
+ - git properties
 
 2. Applies the standard repositories that we use
 
@@ -35,7 +42,8 @@ apply plugin: 'pttgCommonGradle'
 
 4. Sets our standard Java version
 
-5. Applies our convention for test reporting: All tasks with a type of 'Test' will generate report HTML into build/reporting/task-name, eg build/reporting/acceptanceTest or build/reporting/test or build/reporting/myCustomTest
+5. Applies our convention for test reporting: All tasks with a type of 'Test' will generate report HTML into 
+build/reporting/task-name, eg build/reporting/acceptanceTest or build/reporting/test or build/reporting/myCustomTest
 
 6. Includes commonly used dependencies at our standard versions, eg
  - junit
@@ -43,7 +51,14 @@ apply plugin: 'pttgCommonGradle'
  - groovy
  - json
  
-7. Adds Checkstyle to the 'check' task, configured to report on the following errors (but not fail the build):
+7. Applies property expansion to application.properties so that you can use eg ${version} to receive the version
+property from build.gradle
+ 
+8. If the project uses the 'com.moowork.gulp' plugin, then the build is changed to depned on the gulp_test task, and 
+the gulp_test task is added to the verification group
+ 
+9. Adds checkstyleTest task to the verification group, and adds Checkstyle to the 'check' task, 
+configured to report on the following errors (but not fail the build):
  - Unused imports
   
   NB You can choose to have Checkstyle violations fail the build by adding this configuration:
@@ -84,12 +99,16 @@ dependencies{
 
 The following libraries are defined:
 
+- groovy
+- json
+- testUtils
 - logging
 - jackson
+- jacksonJsonProviders
 - mongo    
 - springboot 
-- springbootDev (developer tools for spring boot)
-- springrestdocs (API documentation support)
+- springbootActuator
+- springrestdocs
 - restassured 
 - spock    
 - cucumber

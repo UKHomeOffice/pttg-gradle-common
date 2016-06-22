@@ -1,5 +1,7 @@
 package uk.gov.digital.ho.proving
 
+import com.gorylenko.GitPropertiesPlugin
+import com.moowork.gradle.gulp.GulpPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ApplicationPlugin
@@ -17,12 +19,14 @@ class CommonGradle implements Plugin<Project> {
     @Override
     void apply(Project project) {
 
+
         project.with {
 
             plugins.apply(JavaPlugin)
             plugins.apply(GroovyPlugin)
             plugins.apply(ApplicationPlugin)
             plugins.apply(CheckstylePlugin)
+            plugins.apply(GitPropertiesPlugin)
 
             repositories.jcenter()
             repositories.mavenCentral()
@@ -35,8 +39,26 @@ class CommonGradle implements Plugin<Project> {
                 gradleVersion = '2.13'
             }
 
+            task("pttgCommonGradlePluginUsage", type: UsageTask)
+
             tasks.withType(Test) {
                 reports.html.destination = file("${reporting.baseDir}/${name}")
+            }
+
+            processResources {
+                filesMatching("**/application.properties") {
+                    expand(project.properties)
+                }
+            }
+
+            plugins.withType(GulpPlugin) {
+
+                build.dependsOn gulp_build, gulp_test
+
+                task("gulpTest") {
+                    dependsOn gulp_test
+                    group 'verification'
+                }
             }
 
             checkstyle {
@@ -51,6 +73,11 @@ class CommonGradle implements Plugin<Project> {
                     "  </module>\n" +
                     "</module>")
             }
+
+            checkstyleTest {
+                group 'verification'
+            }
+
 
             ext {
                 cucumberVersion = '1.2.4'
@@ -68,68 +95,79 @@ class CommonGradle implements Plugin<Project> {
                 springVersion = '4.2.5.RELEASE'
             }
 
-            dependencies {
-                compile "org.codehaus.groovy:groovy-all:$groovyVersion"
-                compile "org.json:json:$jsonVersion"
-
-                testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
-                testCompile "org.json:json:$jsonVersion"
-                testCompile 'com.jayway.jsonpath:json-path:2.2.0'
-
-                testCompile "org.springframework:spring-test:$springVersion"
-                testCompile "junit:junit:4.12"
-                testCompile "org.mockito:mockito-all:1.10.19:"
-            }
-
             ext.libraries = [
 
-                logging       : [
+                groovy              : [
+                    "org.codehaus.groovy:groovy-all:$groovyVersion"
+                ],
+
+                json                : [
+                    "org.json:json:$jsonVersion"
+                ],
+
+                testUtils           : [
+                    'com.jayway.jsonpath:json-path:2.2.0',
+                    "org.springframework:spring-test:$springVersion",
+                    "junit:junit:4.12",
+                    "org.mockito:mockito-all:1.10.19:",
+                    'org.assertj:assertj-core:3.4.1',
+                    'nl.jqno.equalsverifier:equalsverifier:1.7.2'
+                ],
+
+                logging             : [
                     "ch.qos.logback:logback-classic:$logbackVersion",
                     "ch.qos.logback:logback-core:$logbackVersion",
                     "org.slf4j:slf4j-parent:1.7.14"
                 ],
 
-                jackson       : [
+                jackson             : [
                     "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion",
                     "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
                 ],
 
-                mongo         : [
+                jacksonJsonProviders: [
+                    "com.sun.jersey:jersey-client:1.19",
+                    "org.glassfish.jersey.media:jersey-media-json-jackson:2.22.2",
+                    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+                ],
+
+                mongo               : [
                     "org.mongodb:bson:$mongoVersion",
                     "org.mongodb:mongodb-driver:$mongoVersion"
                 ],
 
-                springboot    : [
+                springboot          : [
                     "org.springframework.boot:spring-boot:$springBootVersion",
                     "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
                 ],
 
-                springbootDev : [
+                springbootActuator  : [
                     "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
                 ],
 
-                springrestdocs: [
+                springrestdocs      : [
                     "org.springframework.restdocs:spring-restdocs-core:$springRestDocsVersion",
                     "org.springframework.restdocs:spring-restdocs-restassured:$springRestDocsVersion"
                 ],
 
-                restassured   : [
+                restassured         : [
                     "com.jayway.restassured:json-schema-validator:$restAssuredVersion",
                     "com.jayway.restassured:rest-assured:$restAssuredVersion"
                 ],
 
-                spock         : [
+                spock               : [
                     "org.spockframework:spock-core:$spockVersion",
                     "org.spockframework:spock-spring:$spockVersion"
                 ],
 
-                cucumber      : [
+                cucumber            : [
                     "info.cukes:cucumber-java:$cucumberVersion",
                     "info.cukes:cucumber-junit:$cucumberVersion",
                     "info.cukes:gherkin:2.12.2",
                     "net.serenity-bdd:serenity-core:$serenityVersion",
                     "net.serenity-bdd:serenity-cucumber:$serenityCucumberVersion",
-                    "net.serenity-bdd:serenity-junit:$serenityVersion"
+                    "net.serenity-bdd:serenity-junit:$serenityVersion",
+                    "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
                 ]
             ]
         }
