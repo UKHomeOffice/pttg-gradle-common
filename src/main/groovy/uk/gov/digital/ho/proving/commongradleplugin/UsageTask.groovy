@@ -1,4 +1,4 @@
-package uk.gov.digital.ho.proving
+package uk.gov.digital.ho.proving.commongradleplugin
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
@@ -12,7 +12,7 @@ class UsageTask extends DefaultTask {
     String group = "help"
 
     @TaskAction
-    def usageReport() {
+    def commonGradleUsageReport() {
         println "\n" +
             "************************************ USAGE ********************************************\n" +
             "pttgCommonGradle plugin usage guide\n" +

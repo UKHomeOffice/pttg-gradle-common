@@ -1,4 +1,4 @@
-package uk.gov.digital.ho.proving
+package uk.gov.digital.ho.proving.commongradleplugin
 
 import com.gorylenko.GitPropertiesPlugin
 import com.moowork.gradle.gulp.GulpPlugin
