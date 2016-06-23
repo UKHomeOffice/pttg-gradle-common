@@ -100,7 +100,7 @@ class CommonGradle implements Plugin<Project> {
 
                 springTest        : [
                     "org.springframework:spring-test:${project.commonLibraries.springVersion}",
-                    'org.springframework.boot:spring-boot-starter-test'
+                    "org.springframework.boot:spring-boot-starter-test:${project.commonLibraries.springBootVersion}"
                 ],
 
                 logging           : [
