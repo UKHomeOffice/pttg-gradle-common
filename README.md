@@ -113,6 +113,29 @@ The following libraries are defined:
 - spock    
 - cucumber
 
+You can override versions of common dependency libraries using the commonLibraries extension block, specifying
+new version number for the library you wish to override.
+
+This example shows the current version properties and values that can be overridden:
+
+```
+commonLibraries{
+    cucumberVersion = '1.2.4'
+    groovyVersion = '2.4.3'
+    jsonVersion = '20160212'
+    jacksonVersion = '2.7.4'
+    logbackVersion = '1.1.3'
+    mongoVersion = '3.0.4'
+    restAssuredVersion = '2.9.0'
+    serenityCucumberVersion = '1.1.6'
+    serenityVersion = '1.1.31'
+    spockVersion = '1.0-groovy-2.4'
+    springBootVersion = '1.3.3.RELEASE'
+    springRestDocsVersion = '1.1.0.RC1'
+    springVersion = '4.2.5.RELEASE'
+}
+```
+
 ### Deploying this plugin to the GitHub gradle repository
 
 1. Set the version number in build.gradle (and update this readme)
