@@ -1,0 +1,71 @@
+
+You can override versions of common dependency libraries using the commonLibraries extension block, specifying
+new version number for the library you wish to override.
+
+This example shows the current version properties and values that can be overridden:
+
+commonLibraries{
+    cucumberVersion = '1.2.4'
+    groovyVersion = '2.4.3'
+    jsonVersion = '20160212'
+    jacksonVersion = '2.7.4'
+    logbackVersion = '1.1.3'
+    mongoVersion = '3.0.4'
+    restAssuredVersion = '2.9.0'
+    serenityCucumberVersion = '1.1.6'
+    serenityVersion = '1.1.31'
+    spockVersion = '1.0-groovy-2.4'
+    springBootVersion = '1.3.3.RELEASE'
+    springRestDocsVersion = '1.1.0.RC1'
+    springVersion = '4.2.5.RELEASE'
+}
+
+The following sections list configuration that this plugin applies to your project
+
+Plugins:
+    Java
+    Groovy
+    Application
+    Checkstyle
+    Git Properties
+
+Repositories:
+    jcenter
+    mavenCentral
+    mavenLocal
+
+Java version
+   1.8
+
+Gradle Wrapper
+    version :2.13
+    note: run the gradleWrapper task to configure your project
+
+Property Expansion
+    Properties in build.gradle can be referenced with placeholders in application.properties eg ${version}
+
+Test reports
+    Test reports for Test tasks will appear in their own directory following the task name
+    eg reports/acceptanceTest for the acceptanceTest task
+
+Gulp plugin configuration
+    If the gulp plugin is present, the gulp_test task will be added to the build task, and
+    a gulpTest task will be added to the verification group
+
+Checkstyle
+    Checkstyle is added with a check for unused imports
+    You can apply
+        checkstyle {
+            ignoreFailures = true
+        }
+    to fail the build when violations occur
+
+    You can also point to your own checkstyle config file using
+        checkstyle {
+            configFile = <path-to-checkstyle.xml>
+        }
+
+See full details in the plugin readme in github at https://github.com/UKHomeOffice/pttg-gradle-common
+
+
+************************************ END OF USAGE REPORT ********************************************

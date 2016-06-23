@@ -32,53 +32,13 @@ class UsageTask extends DefaultTask {
             println ""
         }
 
-        println "\n" +
-            "The following sections list configuration that this plugin applies to your project\n" +
-            "\n" +
-            "Plugins:\n" +
-            "    Java\n" +
-            "    Groovy\n" +
-            "    Application\n" +
-            "    Checkstyle\n" +
-            "    Git Properties\n" +
-            "\n" +
-            "Repositories:\n" +
-            "    jcenter\n" +
-            "    mavenCentral\n" +
-            "    mavenLocal\n" +
-            "\n" +
-            "Java version\n" +
-            "   1.8\n" +
-            "\n" +
-            "Gradle Wrapper\n" +
-            "    version :2.13\n" +
-            "    note: run the gradleWrapper task to configure your project\n" +
-            "\n" +
-            "Property Expansion\n" +
-            "    Properties in build.gradle can be referenced with placeholders in application.properties eg \${version}\n" +
-            "\n" +
-            "Test reports\n" +
-            "    Test reports for Test tasks will appear in their own directory following the task name\n" +
-            "    eg reports/acceptanceTest for the acceptanceTest task\n" +
-            "\n" +
-            "Gulp plugin configuration\n" +
-            "    If the gulp plugin is present, the gulp_test task will be added to the build task, and\n" +
-            "    a gulpTest task will be added to the verification group\n" +
-            "\n" +
-            "Checkstyle\n" +
-            "    Checkstyle is added with a check for unused imports\n" +
-            "    You can apply\n" +
-            "        checkstyle {\n" +
-            "            ignoreFailures = true\n" +
-            "        }\n" +
-            "    to fail the build when violations occur\n" +
-            "\n" +
-            "    You can also point to your own checkstyle config file using\n" +
-            "        checkstyle {\n" +
-            "            configFile = <path-to-checkstyle.xml>\n" +
-            "        }\n" +
-            "\n" +
-            "See full details in the plugin readme in github at https://github.com/UKHomeOffice/pttg-gradle-common"
 
+        try {
+            def usage = this.getClass().getResource('/usage/usage.txt').text
+            println usage
+        } catch (Exception e) {
+            println "Error loading usage report"
+            e.printStackTrace()
+        }
     }
 }
