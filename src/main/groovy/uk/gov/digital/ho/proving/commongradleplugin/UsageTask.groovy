@@ -34,7 +34,7 @@ class UsageTask extends DefaultTask {
 
 
         try {
-            def usage = this.getClass().getResource('/usage/usage.txt').text
+            def usage = this.getClass().getResource('/usage/common-plugin-usage.txt').text
             println usage
         } catch (Exception e) {
             println "Error loading usage report"
