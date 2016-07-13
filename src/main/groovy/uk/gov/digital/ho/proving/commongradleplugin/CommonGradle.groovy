@@ -147,7 +147,9 @@ class CommonGradle implements Plugin<Project> {
 
                 spock             : [
                     "org.spockframework:spock-core:${project.commonLibraries.spockVersion}",
-                    "org.spockframework:spock-spring:${project.commonLibraries.spockVersion}"
+                    "org.spockframework:spock-spring:${project.commonLibraries.spockVersion}",
+                    "cglib:cglib-nodep:3.2.1",
+                    "org.objenesis:objenesis:2.2"
                 ],
 
                 cucumber          : [
@@ -157,7 +159,9 @@ class CommonGradle implements Plugin<Project> {
                     "net.serenity-bdd:serenity-core:${project.commonLibraries.serenityVersion}",
                     "net.serenity-bdd:serenity-cucumber:${project.commonLibraries.serenityCucumberVersion}",
                     "net.serenity-bdd:serenity-junit:${project.commonLibraries.serenityVersion}",
-                    "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+                    "net.serenity-bdd:serenity-spring:${project.commonLibraries.serenityVersion}",
+                    "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1",
+                    "com.github.tomakehurst:wiremock:1.58"
                 ]
             ]
         }
