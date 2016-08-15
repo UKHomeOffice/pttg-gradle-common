@@ -131,6 +131,12 @@ class CommonGradle implements Plugin<Project> {
                     "org.springframework.boot:spring-boot-starter-web:${project.commonLibraries.springBootVersion}"
                 ],
 
+                springRetry:[
+                    "org.springframework.retry:spring-retry:${project.commonLibraries.springRetryVersion}",
+                    "org.aspectj:aspectjrt:${project.commonLibraries.aspectjVersion}",
+                    "org.aspectj:aspectjweaver:${project.commonLibraries.aspectjVersion}"
+                ],
+
                 springbootActuator: [
                     "org.springframework.boot:spring-boot-starter-actuator:${project.commonLibraries.springBootVersion}"
                 ],
