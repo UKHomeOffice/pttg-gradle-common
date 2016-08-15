@@ -91,6 +91,7 @@ class CommonGradle implements Plugin<Project> {
                 ],
 
                 testUtils         : [
+                    'org.hamcrest:hamcrest-core:1.3',
                     'com.jayway.jsonpath:json-path:2.2.0',
                     "junit:junit:4.12",
                     "org.mockito:mockito-all:1.10.19:",
