@@ -16,11 +16,24 @@ import org.gradle.api.tasks.wrapper.Wrapper
  */
 class CommonGradle implements Plugin<Project> {
 
+    def aspectjVersion = '1.8.9'
+    def cucumberVersion = '1.2.4'
+    def groovyVersion = '2.4.3'
+    def jsonVersion = '20160212'
+    def jacksonVersion = '2.7.4'
+    def logbackVersion = '1.1.3'
+    def mongoVersion = '3.0.4'
+    def restAssuredVersion = '2.9.0'
+    def serenityCucumberVersion = '1.1.6'
+    def serenityVersion = '1.1.31'
+    def spockVersion = '1.0-groovy-2.4'
+    def springBootVersion = '1.3.3.RELEASE'
+    def springRestDocsVersion = '1.1.0.RC1'
+    def springRetryVersion = '1.1.3.RELEASE'
+    def springVersion = '4.2.5.RELEASE'
 
     @Override
     void apply(Project project) {
-
-        project.extensions.create("commonLibraries", CommonGradlePluginExtension)
 
         project.with {
 
@@ -83,11 +96,11 @@ class CommonGradle implements Plugin<Project> {
             ext.libraries = [
 
                 groovy            : [
-                    "org.codehaus.groovy:groovy-all:${project.commonLibraries.groovyVersion}"
+                    "org.codehaus.groovy:groovy-all:${groovyVersion}"
                 ],
 
                 json              : [
-                    "org.json:json:${project.commonLibraries.jsonVersion}"
+                    "org.json:json:${jsonVersion}"
                 ],
 
                 testUtils         : [
@@ -100,21 +113,21 @@ class CommonGradle implements Plugin<Project> {
                 ],
 
                 springTest        : [
-                    "org.springframework:spring-test:${project.commonLibraries.springVersion}",
-                    "org.springframework.boot:spring-boot-starter-test:${project.commonLibraries.springBootVersion}"
+                    "org.springframework:spring-test:${springVersion}",
+                    "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
                 ],
 
                 logging           : [
-                    "ch.qos.logback:logback-classic:${project.commonLibraries.logbackVersion}",
-                    "ch.qos.logback:logback-core:${project.commonLibraries.logbackVersion}",
+                    "ch.qos.logback:logback-classic:${logbackVersion}",
+                    "ch.qos.logback:logback-core:${logbackVersion}",
                     "org.slf4j:slf4j-parent:1.7.14"
                 ],
 
                 jackson           : [
-                    "com.fasterxml.jackson.core:jackson-annotations:${project.commonLibraries.jacksonVersion}",
-                    "com.fasterxml.jackson.core:jackson-databind:${project.commonLibraries.jacksonVersion}",
-                    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${project.commonLibraries.jacksonVersion}",
-                    "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${project.commonLibraries.jacksonVersion}"
+                    "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
+                    "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+                    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}",
+                    "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jacksonVersion}"
                 ],
 
                 jersey            : [
@@ -123,50 +136,50 @@ class CommonGradle implements Plugin<Project> {
                 ],
 
                 mongo             : [
-                    "org.mongodb:bson:${project.commonLibraries.mongoVersion}",
-                    "org.mongodb:mongodb-driver:${project.commonLibraries.mongoVersion}"
+                    "org.mongodb:bson:${mongoVersion}",
+                    "org.mongodb:mongodb-driver:${mongoVersion}"
                 ],
 
                 springboot        : [
-                    "org.springframework.boot:spring-boot:${project.commonLibraries.springBootVersion}",
-                    "org.springframework.boot:spring-boot-starter-web:${project.commonLibraries.springBootVersion}"
+                    "org.springframework.boot:spring-boot:${springBootVersion}",
+                    "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
                 ],
 
                 springRetry:[
-                    "org.springframework.retry:spring-retry:${project.commonLibraries.springRetryVersion}",
-                    "org.aspectj:aspectjrt:${project.commonLibraries.aspectjVersion}",
-                    "org.aspectj:aspectjweaver:${project.commonLibraries.aspectjVersion}"
+                    "org.springframework.retry:spring-retry:${springRetryVersion}",
+                    "org.aspectj:aspectjrt:${aspectjVersion}",
+                    "org.aspectj:aspectjweaver:${aspectjVersion}"
                 ],
 
                 springbootActuator: [
-                    "org.springframework.boot:spring-boot-starter-actuator:${project.commonLibraries.springBootVersion}"
+                    "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
                 ],
 
                 springrestdocs    : [
-                    "org.springframework.restdocs:spring-restdocs-core:${project.commonLibraries.springRestDocsVersion}",
-                    "org.springframework.restdocs:spring-restdocs-restassured:${project.commonLibraries.springRestDocsVersion}"
+                    "org.springframework.restdocs:spring-restdocs-core:${springRestDocsVersion}",
+                    "org.springframework.restdocs:spring-restdocs-restassured:${springRestDocsVersion}"
                 ],
 
                 restassured       : [
-                    "com.jayway.restassured:json-schema-validator:${project.commonLibraries.restAssuredVersion}",
-                    "com.jayway.restassured:rest-assured:${project.commonLibraries.restAssuredVersion}"
+                    "com.jayway.restassured:json-schema-validator:${restAssuredVersion}",
+                    "com.jayway.restassured:rest-assured:${restAssuredVersion}"
                 ],
 
                 spock             : [
-                    "org.spockframework:spock-core:${project.commonLibraries.spockVersion}",
-                    "org.spockframework:spock-spring:${project.commonLibraries.spockVersion}",
+                    "org.spockframework:spock-core:${spockVersion}",
+                    "org.spockframework:spock-spring:${spockVersion}",
                     "cglib:cglib-nodep:3.2.1",
                     "org.objenesis:objenesis:2.2"
                 ],
 
                 cucumber          : [
-                    "info.cukes:cucumber-java:${project.commonLibraries.cucumberVersion}",
-                    "info.cukes:cucumber-junit:${project.commonLibraries.cucumberVersion}",
+                    "info.cukes:cucumber-java:${cucumberVersion}",
+                    "info.cukes:cucumber-junit:${cucumberVersion}",
                     "info.cukes:gherkin:2.12.2",
-                    "net.serenity-bdd:serenity-core:${project.commonLibraries.serenityVersion}",
-                    "net.serenity-bdd:serenity-cucumber:${project.commonLibraries.serenityCucumberVersion}",
-                    "net.serenity-bdd:serenity-junit:${project.commonLibraries.serenityVersion}",
-                    "net.serenity-bdd:serenity-spring:${project.commonLibraries.serenityVersion}",
+                    "net.serenity-bdd:serenity-core:${serenityVersion}",
+                    "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}",
+                    "net.serenity-bdd:serenity-junit:${serenityVersion}",
+                    "net.serenity-bdd:serenity-spring:${serenityVersion}",
                     "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1",
                     "com.github.tomakehurst:wiremock:1.58"
                 ]
