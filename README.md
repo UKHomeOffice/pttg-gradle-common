@@ -11,7 +11,7 @@ buildscript {
             maven { url "https://plugins.gradle.org/m2/" }
        }
        dependencies {
-           classpath 'pttg-gradle-common:pttgCommonGradle:1.2.RELEASE'
+           classpath 'pttg-gradle-common:pttgCommonGradle:1.6.RELEASE'
        }
 }
 ```
@@ -140,10 +140,12 @@ commonLibraries{
 
 1. Set the version number in build.gradle (and update this readme)
 2. Execute the tasks clean, build, publishToGitHub
-3. IntelliJ will ask you for your github login the first time
 
 This relies on the [gradle-git-repo-plugin](https://github.com/layerhq/gradle-git-repo-plugin)
 
+Note that you must have your SSH key set up for GitHub. If the publishToGithub task fails, it's probably because your SSH keys aren't set up.
+If you get prompted for username and password, then please edit ~/.gitRepos/UKHomeOffice/pttg-gradle-repo/.git/config
+and set the remote origin url to git@github.com:UKHomeOffice/pttg-gradle-repo.git
 
 
 ### Development

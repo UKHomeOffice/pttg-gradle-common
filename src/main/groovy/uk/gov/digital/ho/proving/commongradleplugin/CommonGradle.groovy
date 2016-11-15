@@ -27,10 +27,10 @@ class CommonGradle implements Plugin<Project> {
     def serenityCucumberVersion = '1.1.6'
     def serenityVersion = '1.1.31'
     def spockVersion = '1.0-groovy-2.4'
-    def springBootVersion = '1.3.3.RELEASE'
-    def springRestDocsVersion = '1.1.0.RC1'
-    def springRetryVersion = '1.1.3.RELEASE'
-    def springVersion = '4.2.5.RELEASE'
+    def springBootVersion = '1.4.1.RELEASE'
+    def springRestDocsVersion = '1.1.2.RELEASE'
+    def springRetryVersion = '1.1.4.RELEASE'
+    def springVersion = '4.3.3.RELEASE'
 
     @Override
     void apply(Project project) {

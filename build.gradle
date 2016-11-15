@@ -13,7 +13,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'git-repo'
 
 group 'pttg-gradle-common'
-version '1.5.RELEASE'
+version '1.6.RELEASE'
 
 repositories {
     mavenCentral()
@@ -32,10 +32,11 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
 }
+
 gitPublishConfig {
     org = "UKHomeOffice"
     repo = "pttg-gradle-repo"
-    gitUrl = "https://github.com/UKHomeOffice/pttg-gradle-repo.git"
+    gitUrl = "git@github.com:UKHomeOffice/pttg-gradle-repo.git"
 }
 
 publishing {
