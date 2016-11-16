@@ -26,7 +26,7 @@ class CommonGradle implements Plugin<Project> {
     def restAssuredVersion = '2.9.0'
     def serenityCucumberVersion = '1.1.6'
     def serenityVersion = '1.1.31'
-    def spockVersion = '1.0-groovy-2.4'
+    def spockVersion = '1.1-groovy-2.4-rc-3'
     def springBootVersion = '1.4.1.RELEASE'
     def springRestDocsVersion = '1.1.2.RELEASE'
     def springRetryVersion = '1.1.4.RELEASE'
