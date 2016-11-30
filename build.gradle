@@ -13,7 +13,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'git-repo'
 
 group 'pttg-gradle-common'
-version '1.7.RELEASE'
+version '1.8.RELEASE'
 
 repositories {
     mavenCentral()
